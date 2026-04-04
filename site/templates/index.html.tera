@@ -1,0 +1,11 @@
+{% extends "base" %}
+
+{% block title %}Thomas Evans{% endblock %}
+
+{% block content %}
+<h1>Thomas Evans</h1>
+<p>Database Analyst &amp; Student, University of Alberta.</p>
+<p>I build data analytics software at work and study computing science and mathematics at school.
+I love building things with code, solving problems analytically, and communicating clearly.</p>
+<p>In my free time I enjoy reading, cycling, weightlifting, and making strange and useless things.</p>
+{% endblock %}

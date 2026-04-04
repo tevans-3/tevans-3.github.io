@@ -1,0 +1,8 @@
+{% extends "base" %}
+
+{% block title %}Projects{% endblock %}
+
+{% block content %}
+<h1>Projects</h1>
+<p>Projects coming soon.</p>
+{% endblock %}
