@@ -2,6 +2,7 @@ mod blog;
 mod chronosynclastic;
 mod course;
 mod courses;
+mod diagram;
 mod posts;
 
 use rocket::fs::FileServer;

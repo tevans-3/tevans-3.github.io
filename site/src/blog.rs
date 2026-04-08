@@ -14,6 +14,8 @@ pub enum Element {
     Link { text: String, url: String },
     InlineLatex(String),
     BlockLatex(String),
+    CodeBlock { code: String, lang: String },
+    Image { path: String, alt: Option<String> },
     Tikz(String),
     Colorbox {
         bg_color: String,
@@ -70,6 +72,30 @@ impl BlogPost {
 
     pub fn latex_block(mut self, expr: &str) -> Self {
         self.elements.push(Element::BlockLatex(expr.to_string()));
+        self
+    }
+
+    pub fn code_block(mut self, code: &str, lang: &str) -> Self {
+        self.elements.push(Element::CodeBlock {
+            code: code.to_string(),
+            lang: lang.to_string(),
+        });
+        self
+    }
+
+    pub fn image(mut self, path: &str) -> Self {
+        self.elements.push(Element::Image {
+            path: format!("/static/images/{}", path),
+            alt: None,
+        });
+        self
+    }
+
+    pub fn image_with_alt(mut self, path: &str, alt: &str) -> Self {
+        self.elements.push(Element::Image {
+            path: format!("/static/images/{}", path),
+            alt: Some(alt.to_string()),
+        });
         self
     }
 
@@ -149,6 +175,23 @@ impl BlogPost {
                     html.push_str(&format!(
                         "<div class=\"latex-block\">\\[{}\\]</div>\n",
                         expr
+                    ));
+                }
+                Element::CodeBlock { code, lang } => {
+                    html.push_str(&format!(
+                        "<pre><code class=\"language-{}\">{}</code></pre>\n",
+                        escape(lang),
+                        escape(code)
+                    ));
+                }
+                Element::Image { path, alt } => {
+                    let alt_text = alt.as_deref().unwrap_or("");
+                    html.push_str(&format!(
+                        "<figure class=\"post-figure\">\
+                         <img src=\"{}\" alt=\"{}\" />\
+                         </figure>\n",
+                        escape(path),
+                        escape(alt_text)
                     ));
                 }
                 Element::Tikz(code) => {

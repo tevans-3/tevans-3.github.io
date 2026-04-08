@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>On the Topology of Continuous Functions</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <article class="latex-body">
+        
+<header class="post-header"><h1 class="post-title">On the Topology of Continuous Functions</h1><time class="post-date">2026-04-01</time></header>
+<p>We begin with a review of the fundamental structures underlying continuous mappings between topological spaces.</p>
+<h2 class="section-title">Preliminaries</h2>
+<h3 class="subsection-title">Topological Spaces</h3>
+<p>Let \(X\) be a topological space equipped with a topology \(\tau\). Recall that \(\tau\) satisfies the usual axioms of closure under arbitrary unions and finite intersections.</p>
+<div class="colorbox" style="background-color: #f3e5f5;border: 2px solid #7b1fa2;"><p><strong>Definition 1.1.</strong> A function \(f: X \to Y\) is <em>continuous</em> if for every open set \(V \subseteq Y\), the preimage \(f^{-1}(V)\) is open in \(X\).</p></div>
+<div class="latex-block">\[f^{-1}(V) = \{x \in X \mid f(x) \in V\}\]</div>
+<h3 class="subsection-title">Compactness</h3>
+<p>Compactness is among the most powerful properties a topological space can possess.</p>
+<div class="colorbox" style="background-color: #e8eaf6;"><p><strong>Theorem 1.2.</strong> A continuous image of a compact space is compact.</p></div>
+<h2 class="section-title">The Intermediate Value Theorem</h2>
+<p>We now state and prove one of the cornerstones of analysis.</p>
+<div class="colorbox" style="background-color: #e8f5e9;border: 2px solid #2e7d32;"><p><strong>Theorem 2.1</strong> (Intermediate Value Theorem). Let \(f: [a,b] \to \mathbb{R}\) be continuous. If \(f(a) < d < f(b)\), then there exists \(c \in (a,b)\) such that \(f(c) = d\).</p></div>
+<div class="latex-block">\[\forall\, d \in (f(a), f(b)),\; \exists\, c \in (a,b) : f(c) = d\]</div>
+<p><em>Proof.</em> Consider the set \(S = \{x \in [a,b] \mid f(x) < d\}\). Since \(f(a) < d\), the set \(S\) is nonempty. Let \(c = \sup S\). By continuity of \(f\), we conclude \(f(c) = d\). \(\blacksquare\)</p>
+<h2 class="section-title">A Geometric Illustration</h2>
+<p>The following diagram illustrates a continuous map between two spaces.</p>
+<div class="tikz-container"><script type="text/tikz">\begin{tikzpicture}
+  \draw[thick, purple] (0,0) ellipse (1.5 and 1);
+  \draw[thick, purple] (5,0) ellipse (1.5 and 1);
+  \draw[->, thick, purple] (1.7,0.3) to[bend left=20] node[above] {$f$} (3.3,0.3);
+  \node at (0, -0.1) {$X$};
+  \node at (5, -0.1) {$Y$};
+  \fill[purple!40] (0.3, 0.2) circle (0.08);
+  \fill[purple!40] (4.7, -0.1) circle (0.08);
+  \draw[->, thin, purple!60] (0.38, 0.2) to[bend left=10] (4.62, -0.1);
+  \node[below, font=\tiny] at (0.3, 0.12) {$x$};
+  \node[below, font=\tiny] at (4.7, -0.18) {$f(x)$};
+\end{tikzpicture}</script></div>
+<p><a href="https://en.wikipedia.org/wiki/Topology">Further reading on topology</a></p>
+
+
+    </article>
+
+    <nav class="bottom-nav">
+        <a href="/posts">posts</a>
+        <a href="/courses">courses</a>
+        <a href="/projects">projects</a>
+        <a href="/chronosynclastic-infundibula">chronosynclastic infundibula</a>
+        <a href="/about">about</a>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "\\[", right: "\\]", display: true},
+                    {left: "\\(", right: "\\)", display: false},
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                throwOnError: false
+            });
+        });
+    </script>
+</body>
+</html>

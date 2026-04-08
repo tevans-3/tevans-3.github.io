@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <article class="latex-body">
+        
+<h1>About</h1>
+<p>I'm Thomas, a Database Analyst and part-time student at the University of Alberta.
+At work I build data analytics software. At school I study computing science and mathematics.</p>
+<p>In the past I worked as a research assistant under the supervision of Dr. Sheny Khera;
+our project studied how web-form design can reduce administrative burden for academic physicians.</p>
+
+    </article>
+
+    <nav class="bottom-nav">
+        <a href="/posts">posts</a>
+        <a href="/courses">courses</a>
+        <a href="/projects">projects</a>
+        <a href="/chronosynclastic-infundibula">chronosynclastic infundibula</a>
+        <a href="/about">about</a>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "\\[", right: "\\]", display: true},
+                    {left: "\\(", right: "\\)", display: false},
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                throwOnError: false
+            });
+        });
+    </script>
+</body>
+</html>

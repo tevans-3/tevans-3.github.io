@@ -147,16 +147,6 @@ a:hover {
     overflow-x: auto;
 }
 
-.post-figure {
-    text-align: center;
-    margin: 1.5rem auto;
-}
-
-.post-figure img {
-    max-width: 100%;
-    height: auto;
-}
-
 .tikz-container {
     text-align: center;
     margin: 1.5rem 0;
