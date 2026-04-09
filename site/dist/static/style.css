@@ -78,12 +78,6 @@ a:hover {
     border-bottom-color: var(--link);
 }
 
-img { 
-    display: block; 
-    margin-left: auto; 
-    margin-right: auto; 
-    width: 50%; 
-}
 
 .post-header {
     text-align: center;
