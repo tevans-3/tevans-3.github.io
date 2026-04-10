@@ -1,9 +1,9 @@
 {% extends "base" %}
 
-{% block title %}Chronosynclastic Infundibula{% endblock %}
+{% block title %}Misc{% endblock %}
 
 {% block content %}
-<h1>Chronosynclastic Infundibula</h1>
+<h1>Misc</h1>
 <p>A place where all the different kinds of truths fit together.</p>
 
 <div class="tabs">

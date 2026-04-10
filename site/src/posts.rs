@@ -13,16 +13,17 @@ fn sample_post() -> BlogPost {
     .paragraph("This post describes how I built an onion router to run on my local machine. The system is named \"Onionhead\" in tribute to Todd Rundgren, who wrote a song by that name.")
     .title("Preliminaries")
     .subtitle("Why Care About Onion Routing?")
-    .paragraph("Cryptography has historically focused on the protection of transmitted information, paying less attention to the shielding of information metadata. This metadata itself, however, can be a significant security and privacy concern. In countries where censorship is commonplace, simply accessing certain websites may mark you as a target for persecution. \"I have nothing to hide\", you might think, \"Why should I care who knows what websites I visit?\" That attitude, however, is only viable based on your position in a privileged present. Democracies can collapse. What was protected yesterday may be illegal tomorrow. And even in more mundane circumstances, it's often desirable to have control over what you disclose about yourself and how it gets disclosed. An onion router protects information metadata, like what website you visited at a certain time. It prevents passive observers from linking site access requests to the individuals making those requests. That makes it broadly useful, both for things like censorship resistance and also more nefarious things like illegal drug smuggling.")
-    .paragraph("The social consequences of the technology are, thankfully, out of scope here; this post strictly focuses on 'how it works'.  To better understand that, we're going to build our own.")
+    .paragraph("Cryptography has historically focused on the protection of transmitted information, paying less attention to the shielding of information metadata. This metadata itself, however, can be a significant security and privacy concern. In countries where censorship is commonplace, simply accessing certain websites may mark you as a target for persecution. \"I have nothing to hide\", you might think, \"Why should I care who knows what websites I visit?\" That attitude, however, is only viable based on your position in a privileged present. Rights can erode. What was protected yesterday may be illegal tomorrow. And even in more mundane circumstances, it's often desirable to control what you disclose about yourself and how it gets disclosed. An onion router gives you a greater degree of control. It effectively covers your tracks as you travel across a network by protecting information metadata, like what website you visited at a certain time. It prevents passive observers from linking site access requests to the individuals making those requests. That makes it broadly useful, both for things like censorship resistance and also smuggling cocaine.")    
+    .paragraph("The social consequences of the technology are, thankfully, out of scope here; this post strictly focuses on 'how it works'.  To better understand that, we're going to build an onion router.")
     .colorbox_styled("#f3e5f5", "#7b1fa2", 2, "<strong>Definition 1.1.</strong> An <em>onion router</em> is a system of internetworked proxies which apply a protocol of successive encryption in order to protect information <em>metadata</em>.")
     .subtitle("Tools and Setup")
     .paragraph("Containerlab is a containerized network simulator, built on Docker. We're going to use it to configure our network topology.")
-    .colorbox("#e8eaf6", "<strong>Note</strong> You need Docker to run containerlab. If you're reading this post tutorial-style, this post assumes that you already have Docker installed. You can just run this Docker command to install containerlab: \\texttt{docker pull ghcr.io/srl-labs/clab}")
+    .colorbox("#e8eaf6", "<strong>Note</strong> You need Docker to run containerlab. If you're reading this tutorial-style, this post assumes that you already have Docker installed. You can just run this Docker command to install containerlab: 'docker pull ghcr.io/srl-labs/clab'")
     .title("Configuring a Network with Containerlab")
-    .paragraph("A virtual lab is used for running simulations of complex networks on a single machine. Containerlab is a FOSS tool which lets users build their own virtual labs. In containerlab, you build a virtual lab by defining a network topology. A network is the whole set of interconnected components and connections, the complete system. A network topology is an abstraction and specification of a network. It's a set of nodes and a set of edges.")
-    .colorbox_styled("#e8f5e9", "#2e7d32", 2, "")
-    .latex_block(r"\begin{lstlisting}[style=bash] # topology documentation: http://containerlab.dev/lab-examples/two-srls/
+    .paragraph("A virtual lab is a simulation of a complex network that runs on a single machine. A lab is built by defining a network topology. Where a network is the whole set of interconnected components and connections, the complete system, a network topology is an abstraction and specification of a network. It's just a set of nodes and a set of edges.")
+    .colorbox_styled("#e8f5e9", "#2e7d32", 2, "Containerlab is a batteries-included, FOSS tool for building and running virtual labs. It gives you everything you need to define, run, and analyze labs out-of-the-box.")
+    .paragraph("Here's an example of a network topology .yaml definition file:")
+    .code_block(r"# topology documentation: http://containerlab.dev/lab-examples/two-srls/
         name: srl02 
 
         topology: 
@@ -37,8 +38,7 @@ fn sample_post() -> BlogPost {
                     startup-config: srl2.cfg 
 
             links: 
-                - endpoints: ['srl1:e1-1', 'srl2:e1-1' 
-                \end{lstlisting}\\")
+                - endpoints: ['srl1:e1-1', 'srl2:e1-1'", "latex")
     .paragraph("<em>Proof.</em> Consider the set \\(S = \\{x \\in [a,b] \\mid f(x) < d\\}\\). Since \\(f(a) < d\\), the set \\(S\\) is nonempty. Let \\(c = \\sup S\\). By continuity of \\(f\\), we conclude \\(f(c) = d\\). \\(\\blacksquare\\)")
     .title("A Geometric Illustration")
     .paragraph("The following diagram illustrates a continuous map between two spaces.")

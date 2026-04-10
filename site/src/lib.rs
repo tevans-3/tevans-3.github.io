@@ -1,5 +1,5 @@
 pub mod blog;
-pub mod chronosynclastic;
+pub mod misc;
 pub mod course;
 pub mod courses;
 pub mod diagram;

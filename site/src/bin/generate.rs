@@ -2,7 +2,7 @@ use std::fs;
 use std::path::Path;
 
 use tera::{Context, Tera};
-use site::{chronosynclastic, courses, posts};
+use site::{courses, misc, posts};
 
 fn main() {
     let mut tera = Tera::default();
@@ -69,15 +69,15 @@ fn main() {
         dist.join("projects/index.html"),
     );
 
-    // /chronosynclastic-infundibula
+    // /misc
     let mut ctx = Context::new();
-    ctx.insert("reading_content", &chronosynclastic::reading_content());
-    ctx.insert("quotes_content", &chronosynclastic::quotes_content());
+    ctx.insert("reading_content", &misc::reading_content());
+    ctx.insert("quotes_content", &misc::quotes_content());
     write_page(
         &tera,
-        "chronosynclastic",
+        "misc",
         &ctx,
-        dist.join("chronosynclastic-infundibula/index.html"),
+        dist.join("misc/index.html"),
     );
 
     // /about

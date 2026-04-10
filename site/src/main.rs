@@ -1,5 +1,5 @@
 mod blog;
-mod chronosynclastic;
+mod misc;
 mod course;
 mod courses;
 mod diagram;
@@ -45,12 +45,12 @@ fn projects() -> Template {
     Template::render("projects", context! {})
 }
 
-#[get("/chronosynclastic-infundibula")]
-fn chronosynclastic_infundibula() -> Template {
-    let reading = chronosynclastic::reading_content();
-    let quotes = chronosynclastic::quotes_content();
+#[get("/misc")]
+fn misc_page() -> Template {
+    let reading = misc::reading_content();
+    let quotes = misc::quotes_content();
     Template::render(
-        "chronosynclastic",
+        "misc",
         context! { reading_content: reading, quotes_content: quotes },
     )
 }
@@ -65,7 +65,7 @@ fn rocket() -> _ {
     rocket::build()
         .mount(
             "/",
-            routes![index, posts_index, post_page, courses_index, projects, chronosynclastic_infundibula, about],
+            routes![index, posts_index, post_page, courses_index, projects, misc_page, about],
         )
         .mount("/static", FileServer::from("static"))
         .attach(Template::fairing())
