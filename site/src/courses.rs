@@ -33,7 +33,7 @@ pub fn all_years() -> Vec<Year> {
                     .course("Parallel and Distributed Programming", "CMPUT 481",
                         "Introduction to parallel programming, parallel and distributed systems, and high-performance computing, covering both shared-memory parallel computers and distributed-memory multicomputers.")
                     .course("Distributed Systems Architecture", "CMPUT 398",
-                        "Topics course covering distributed systems architecture, including consistency models, replication, fault tolerance, and distributed consensus.")
+                        "Topics course covering distributed systems architecture, focusing on client-server computing.")
                     .course("Exploring Software Development Domains", "ECE 421",
                         "Advanced programming concepts including productivity, components and re-use, object-oriented construction, systems programming, concurrent programming, distributed programming, and GUI programming.")
             ),
@@ -41,7 +41,7 @@ pub fn all_years() -> Vec<Year> {
             .semester(
                 Semester::new(Season::Fall)
                     .course("Cryptography and Digital Privacy", "CMPUT 496",
-                        "Topics course covering cryptographic primitives, public-key cryptography, digital signatures, zero-knowledge proofs, and privacy-preserving protocols.")
+                        "Topics course covering cryptographic primitives, public-key cryptography, digital signatures, and privacy-preserving protocols.")
                     .course("Operating Systems", "CMPUT 379",
                         "Process management, interrupt processing, resource allocation, semaphores, deadlock, memory management, virtual memory, paging, scheduling, file systems, and OS security.")
                     .course("Machine Learning I", "CMPUT 267",
