@@ -32,7 +32,7 @@ fn main() {
     }
 
     // /
-    write_page(&tera, "about", &Context::new(), dist.join("about.html"));
+    write_page(&tera, "about", &Context::new(), dist.join("index.html"));
 
     // /posts
     let all_posts = posts::all_posts();
