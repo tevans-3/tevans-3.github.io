@@ -23,6 +23,7 @@ impl std::fmt::Display for Season {
 pub struct Course {
     pub name: String,
     pub number: String,
+    pub description: String,
 }
 
 #[derive(Clone, Serialize)]
@@ -39,11 +40,12 @@ impl Semester {
         }
     }
 
-    pub fn course(mut self, name: &str, number: &str) -> Self {
+    pub fn course(mut self, name: &str, number: &str, description: &str) -> Self {
         assert!(self.courses.len() < 5, "A semester can contain at most 5 courses");
         self.courses.push(Course {
             name: name.to_string(),
             number: number.to_string(),
+            description: description.to_string(),
         });
         self
     }
@@ -83,9 +85,10 @@ impl Year {
             html.push_str("<ul class=\"course-list\">\n");
             for course in &sem.courses {
                 html.push_str(&format!(
-                    "  <li><span class=\"course-number\">{}</span> {}</li>\n",
+                    "  <li class=\"course-tooltip\"><span class=\"course-number\">{}</span> {}<span class=\"tooltip-text\">{}</span></li>\n",
                     escape(&course.number),
-                    escape(&course.name)
+                    escape(&course.name),
+                    escape(&course.description)
                 ));
             }
             html.push_str("</ul>\n");

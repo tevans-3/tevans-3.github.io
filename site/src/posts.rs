@@ -38,21 +38,5 @@ fn sample_post() -> BlogPost {
                     startup-config: srl2.cfg 
 
             links: 
-                - endpoints: ['srl1:e1-1', 'srl2:e1-1'", "latex")
-    .paragraph("<em>Proof.</em> Consider the set \\(S = \\{x \\in [a,b] \\mid f(x) < d\\}\\). Since \\(f(a) < d\\), the set \\(S\\) is nonempty. Let \\(c = \\sup S\\). By continuity of \\(f\\), we conclude \\(f(c) = d\\). \\(\\blacksquare\\)")
-    .title("A Geometric Illustration")
-    .paragraph("The following diagram illustrates a continuous map between two spaces.")
-    .tikz(r"\begin{tikzpicture}
-  \draw[thick, purple] (0,0) ellipse (1.5 and 1);
-  \draw[thick, purple] (5,0) ellipse (1.5 and 1);
-  \draw[->, thick, purple] (1.7,0.3) to[bend left=20] node[above] {$f$} (3.3,0.3);
-  \node at (0, -0.1) {$X$};
-  \node at (5, -0.1) {$Y$};
-  \fill[purple!40] (0.3, 0.2) circle (0.08);
-  \fill[purple!40] (4.7, -0.1) circle (0.08);
-  \draw[->, thin, purple!60] (0.38, 0.2) to[bend left=10] (4.62, -0.1);
-  \node[below, font=\tiny] at (0.3, 0.12) {$x$};
-  \node[below, font=\tiny] at (4.7, -0.18) {$f(x)$};
-\end{tikzpicture}")
-    .link("Further reading on topology", "https://en.wikipedia.org/wiki/Topology")
+                - endpoints: ['srl1:e1-1', 'srl2:e1-1'", "latex") 
 }

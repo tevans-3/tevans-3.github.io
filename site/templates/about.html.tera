@@ -4,8 +4,10 @@
 
 {% block content %}
 <h1>About</h1>
+<div style="text-align: center;">
+<img src="../photo.jpg" width="50%" height="50%"></img>
+</div>
 <p>I'm Thomas, a Database Analyst and part-time student at the University of Alberta.
-At work I build data analytics software. At school I study computing science and mathematics.</p>
-<p>In the past I worked as a research assistant under the supervision of Dr. Sheny Khera;
-our project studied how web-form design can reduce administrative burden for academic physicians.</p>
+At work, I build data analytics software. At school, I study computing science and mathematics.</p>
+<p>In my free time I enjoy reading, cycling, weightlifting, and working on strange and useless software. For examples, see the 'projects' tab. </p>
 {% endblock %}

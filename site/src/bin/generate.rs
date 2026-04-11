@@ -2,7 +2,7 @@ use std::fs;
 use std::path::Path;
 
 use tera::{Context, Tera};
-use site::{courses, misc, posts};
+use site::{courses, misc, posts, projects};
 
 fn main() {
     let mut tera = Tera::default();
@@ -32,7 +32,7 @@ fn main() {
     }
 
     // /
-    write_page(&tera, "index", &Context::new(), dist.join("index.html"));
+    write_page(&tera, "about", &Context::new(), dist.join("about.html"));
 
     // /posts
     let all_posts = posts::all_posts();
@@ -62,12 +62,10 @@ fn main() {
     write_page(&tera, "courses", &ctx, dist.join("courses/index.html"));
 
     // /projects
-    write_page(
-        &tera,
-        "projects",
-        &Context::new(),
-        dist.join("projects/index.html"),
-    );
+    let all_projects = projects::all_projects();
+    let mut ctx = Context::new();
+    ctx.insert("projects", &all_projects);
+    write_page(&tera, "projects", &ctx, dist.join("projects/index.html"));
 
     // /misc
     let mut ctx = Context::new();
@@ -78,14 +76,6 @@ fn main() {
         "misc",
         &ctx,
         dist.join("misc/index.html"),
-    );
-
-    // /about
-    write_page(
-        &tera,
-        "about",
-        &Context::new(),
-        dist.join("about/index.html"),
     );
 
     // copy static/

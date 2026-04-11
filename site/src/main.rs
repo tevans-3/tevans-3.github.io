@@ -4,6 +4,8 @@ mod course;
 mod courses;
 mod diagram;
 mod posts;
+mod project;
+mod projects;
 
 use rocket::fs::FileServer;
 use rocket_dyn_templates::{context, Template};
@@ -13,7 +15,7 @@ extern crate rocket;
 
 #[get("/")]
 fn index() -> Template {
-    Template::render("index", context! {})
+    Template::render("about", context! {})
 }
 
 #[get("/posts")]
@@ -41,8 +43,9 @@ fn courses_index() -> Template {
 }
 
 #[get("/projects")]
-fn projects() -> Template {
-    Template::render("projects", context! {})
+fn projects_index() -> Template {
+    let projects = projects::all_projects();
+    Template::render("projects", context! { projects })
 }
 
 #[get("/misc")]
@@ -55,17 +58,12 @@ fn misc_page() -> Template {
     )
 }
 
-#[get("/about")]
-fn about() -> Template {
-    Template::render("about", context! {})
-}
-
 #[launch]
 fn rocket() -> _ {
     rocket::build()
         .mount(
             "/",
-            routes![index, posts_index, post_page, courses_index, projects, misc_page, about],
+            routes![index, posts_index, post_page, courses_index, projects_index, misc_page],
         )
         .mount("/static", FileServer::from("static"))
         .attach(Template::fairing())

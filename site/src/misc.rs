@@ -15,6 +15,24 @@ impl Book {
         }
     }
 
+    pub fn want_to_read(title: &str, author: &str) -> Self {
+        Self {
+            title: title.to_string(),
+            author: author.to_string(),
+            date_read: String::new(),
+            rating: 0.0,
+        }
+    }
+
+    pub fn reading(title: &str, author: &str) -> Self {
+        Self {
+            title: title.to_string(),
+            author: author.to_string(),
+            date_read: String::new(),
+            rating: 0.0,
+        }
+    }
+
     pub fn to_html(&self) -> String {
         let mut html = String::new();
         html.push_str("<li>"); 
@@ -40,7 +58,11 @@ impl Book {
 pub fn reading_content() -> String {
     let mut html = String::new();
     html.push_str("<ul class=\"reading-list\">\n");
-    let mut book = Book::read("The Three Stigmata of Palmer Eldritch", "Philip K. Dick", "2025-07", 4.5).to_html(); 
+    let mut book = Book::want_to_read("Lack of Character", "John Doris").to_html(); 
+    html.push_str(&book); 
+    book = Book::reading("The Dispossessed", "Ursula K. Leguin").to_html();
+    html.push_str(&book); 
+    book = Book::read("The Three Stigmata of Palmer Eldritch", "Philip K. Dick", "2025-07", 4.5).to_html(); 
     html.push_str(book.as_str()); 
     book = Book::read("Normal People", "Sally Rooney", "2025-01", 4.0).to_html(); 
     html.push_str(book.as_str()); 

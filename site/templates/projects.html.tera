@@ -4,5 +4,20 @@
 
 {% block content %}
 <h1>Projects</h1>
-<p>Projects coming soon.</p>
+<ul class="project-list">
+{% for project in projects %}
+<li class="project-item">
+  <div class="project-header">
+    <span class="project-title">{{ project.title }}</span>
+    {% if project.link %}
+      <a href="https://{{ project.link }}">{{ project.link }}</a>
+    {% endif %}
+  </div>
+  <p class="project-desc">{{ project.description }}</p>
+  <div class="progress-bar">
+    <div class="progress-fill" style="width: {{ project.progress }}%"></div>
+  </div>
+</li>
+{% endfor %}
+</ul>
 {% endblock %}
