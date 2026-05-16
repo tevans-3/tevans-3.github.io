@@ -377,6 +377,34 @@ a:hover {
     opacity: 1;
 }
 
+/* Code blocks */
+pre {
+    background: #f5f0eb;
+    border: 1px solid var(--nav-border);
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+}
+
+pre code {
+    font-family: "Computer Modern Typewriter", "Latin Modern Mono", monospace;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    background: none;
+    padding: 0;
+    border-radius: 0;
+}
+
+/* Inline code and math */
+code {
+    font-family: "Computer Modern Typewriter", "Latin Modern Mono", monospace;
+    font-size: 0.82rem;
+    background: #e0f2e9;
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+}
+
 @media (max-width: 600px) {
     html { font-size: 16px; }
     body { padding: 1rem 0.75rem 4.5rem; }
