@@ -11,10 +11,10 @@
     <article class="latex-body">
         
 <header class="post-header"><h1 class="post-title">Onionhead: a DIY Onion Router</h1><time class="post-date">2026-04-01</time></header>
-<p>This post describes how I built an onion router to run on my local machine. The system is named "Onionhead" in tribute to Todd Rundgren, who wrote a song by that name.</p>
+<p>This post describes how I built an onion router to run on my local machine. The system is named "Onionhead" in tribute to Todd Rundgren, who wrote <a href="https://www.youtube.com/watch?v=IzrIvDSKdS0">a song</a> by that name.</p>
 <h2 class="section-title">Preliminaries</h2>
 <h3 class="subsection-title">Why Care About Onion Routing?</h3>
-<p>Cryptography has historically focused on the protection of transmitted information, paying less attention to the shielding of information metadata. This metadata itself, however, can be a significant security and privacy concern. In countries where censorship is commonplace, simply accessing certain websites may mark you as a target for persecution. "I have nothing to hide", you might think, "Why should I care who knows what websites I visit?" That attitude, however, is only viable based on your position in a privileged present. Rights can erode. What was protected yesterday may be illegal tomorrow. And even in more mundane circumstances, it's often desirable to control what you disclose about yourself and how it gets disclosed. An onion router gives you a greater degree of control. It effectively covers your tracks as you travel across a network by protecting information metadata, like what website you visited at a certain time. It prevents passive observers from linking site access requests to the individuals making those requests. That makes it broadly useful, both for things like censorship resistance and also smuggling cocaine.</p>
+<p>Cryptography has historically focused on the protection of transmitted information, paying less attention to the shielding of information metadata. This metadata itself, however, can be a significant security and privacy concern. In countries where censorship is commonplace, simply accessing certain websites may mark you as a target for persecution. "I have nothing to hide", you might think, "Why should I care who knows what websites I visit?" That attitude, however, is only viable based on your position in a privileged present. Rights erode. What is protected today may be illegal tomorrow. And even in more mundane circumstances, it's often desirable to control what you disclose about yourself and how it gets disclosed. An onion router gives you a greater degree of control. It effectively covers your tracks as you travel across a network by protecting information metadata, like what website you visited at a certain time. It prevents passive observers from linking site access requests to the individuals making those requests. That makes it broadly useful, both for things like censorship resistance and also smuggling cocaine.</p>
 <p>The social consequences of the technology are, thankfully, out of scope here; this post strictly focuses on 'how it works'.  To better understand that, we're going to build an onion router.</p>
 <div class="colorbox" style="background-color: #f3e5f5;border: 2px solid #7b1fa2;"><p><strong>Definition 1.1.</strong> An <em>onion router</em> is a system of internetworked proxies which apply a protocol of successive encryption in order to protect information <em>metadata</em>.</p></div>
 <h3 class="subsection-title">Tools and Setup</h3>
@@ -24,7 +24,8 @@
 <p>A virtual lab is a simulation of a complex network that runs on a single machine. A lab is built by defining a network topology. Where a network is the whole set of interconnected components and connections, the complete system, a network topology is an abstraction and specification of a network. It's just a set of nodes and a set of edges.</p>
 <div class="colorbox" style="background-color: #e8f5e9;border: 2px solid #2e7d32;"><p>Containerlab is a batteries-included, FOSS tool for building and running virtual labs. It gives you everything you need to define, run, and analyze labs out-of-the-box.</p></div>
 <p>Here's an example of a network topology .yaml definition file:</p>
-<pre><code class="language-latex"># topology documentation: http://containerlab.dev/lab-examples/two-srls/
+<pre><code class="language-latex">
+        # topology documentation: http://containerlab.dev/lab-examples/two-srls/
         name: srl02 
 
         topology: 
@@ -39,7 +40,7 @@
                     startup-config: srl2.cfg 
 
             links: 
-                - endpoints: ['srl1:e1-1', 'srl2:e1-1'</code></pre>
+                - endpoints: ['srl1:e1-1', 'srl2:e1-1']</code></pre>
 
 
     </article>
