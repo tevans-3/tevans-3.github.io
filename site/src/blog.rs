@@ -85,7 +85,7 @@ impl BlogPost {
 
     pub fn image(mut self, path: &str) -> Self {
         self.elements.push(Element::Image {
-            path: format!("/static/images/{}", path),
+            path: Self::resolve_image_path(path),
             alt: None,
         });
         self
@@ -93,10 +93,18 @@ impl BlogPost {
 
     pub fn image_with_alt(mut self, path: &str, alt: &str) -> Self {
         self.elements.push(Element::Image {
-            path: format!("/static/images/{}", path),
+            path: Self::resolve_image_path(path),
             alt: Some(alt.to_string()),
         });
         self
+    }
+
+    fn resolve_image_path(path: &str) -> String {
+        if path.starts_with('/') {
+            path.to_string()
+        } else {
+            format!("/static/images/{}", path)
+        }
     }
 
     pub fn tikz(mut self, code: &str) -> Self {

@@ -81,6 +81,11 @@ fn main() {
     // copy static/
     copy_dir("static", &dist.join("static"));
 
+    // copy public/ (images and other assets served from dist root)
+    if Path::new("public").exists() {
+        copy_dir("public", dist);
+    }
+
     println!("Built site to dist/");
 }
 

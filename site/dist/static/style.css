@@ -377,6 +377,16 @@ a:hover {
     opacity: 1;
 }
 
+/* About footer */
+.about-footer {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--nav-border);
+}
+
 /* Code blocks */
 pre {
     background: #f5f0eb;

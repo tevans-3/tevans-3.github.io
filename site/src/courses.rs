@@ -5,32 +5,27 @@ pub fn all_years() -> Vec<Year> {
         Year::new(2027)
             .semester(
                 Semester::new(Season::Winter)
-                    .course("TODO- Theory of Probability", "MATH 467",
-                        "Probability measures, random variables, distributions, Lebesgue-Stieltjes integration, independence, convergence, characteristic functions, the Law of Large Numbers, and the Central Limit Theorem.")
-                    .course("TODO- Group Theory in Physics", "MAPH 364",
-                        "Symmetries in physics; basic concepts of group theory and representation theory; finite groups; continuous groups; orthogonal and unitary groups; Lie groups; spinor representations; Lorentz and Poincare groups.")
+                    .course("TODO- Advanced Algorithms", "CMPUT 498",
+                        "A topics course targeted for senior undergraduate and graduate students interested in TCS. Covers classic topics and more recent advances in streaming and sketching algorithms for big data, online and randomized algorithms, and approximation algorithms.")
+                    .course("TODO- Computer Systems and Architecture", "CMPUT 429",
+                        "A discussion of computer system design concepts with stress on modern ideas that have shaped the high-performance architecture of contemporary systems. Instruction sets, pipelining, instruction-level parallelism, register reuse, branch prediction, CPU control, cache- coherence, accelerators, and related concepts. Memory technologies, caches, I/O, high-performance networks.")
             ),
         Year::new(2026)
             .semester(
                 Semester::new(Season::Fall)
                     .course("TODO- Compiler Design", "CMPUT 415",
                         "Compilers, interpreters, lexical analysis, syntax analysis, syntax-directed translation, symbol tables, type checking, flow analysis, code generation, and code optimization.")
-                    .course("TODO- Partial Differential Equations", "MATH 337",
-                        "Boundary value problems of classical mathematical physics, orthogonal expansions, classical special functions, and advanced transform techniques.")
+                    .course("TODO- Algorithms II", "CMPUT 304",
+                        "The second course of a two-course sequence on algorithm design. Emphasis on principles of algorithm design. Categories of algorithms such as divide-and-conquer, greedy algorithms, dynamic programming; analysis of algorithms; limits of algorithm design; NP-completeness; heuristic algorithms.")
             )
             .semester(
                 Semester::new(Season::Summer)
                     .course("TODO- Calculus IV", "MATH 315",
                         "Vector calculus, line and surface integrals, the divergence, Green's, and Stokes' theorems, and differential forms.")
-            )
-            .semester(
-                Semester::new(Season::Spring)
-                    .course("TODO- Ordinary Differential Equations", "MATH 334",
-                        "First order equations, linear equations of higher order, power series solutions, Laplace transform methods, introduction to special functions, and introduction to linear systems.")
-            )
+            )            
             .semester(
                 Semester::new(Season::Winter)
-                    .course("Parallel and Distributed Programming", "CMPUT 481",
+                    .course("Parallel and Distributed Systems", "CMPUT 481",
                         "Introduction to parallel programming, parallel and distributed systems, and high-performance computing, covering both shared-memory parallel computers and distributed-memory multicomputers.")
                     .course("Distributed Systems Architecture", "CMPUT 398",
                         "Topics course covering distributed systems architecture, focusing on client-server computing.")
@@ -49,7 +44,7 @@ pub fn all_years() -> Vec<Year> {
             )
             .semester(
                 Semester::new(Season::Spring)
-                    .course("Probability and Statistics I", "STAT 266",
+                    .course("Probability and Statistics I", "STAT 265",
                         "Combinatorial probability, conditional probability, Bayes' Theorem, random variables, discrete and continuous distributions, expected values, moment generating functions, and multivariate distributions.")
                     .course("Graph Theory", "MATH 322",
                         "Graphs, paths and cycles, trees, planarity and duality, coloring problems, digraphs, matching problems, and matroid theory.")
