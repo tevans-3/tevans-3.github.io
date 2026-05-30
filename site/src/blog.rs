@@ -100,11 +100,7 @@ impl BlogPost {
     }
 
     fn resolve_image_path(path: &str) -> String {
-        if path.starts_with('/') {
-            path.to_string()
-        } else {
-            format!("/static/images/{}", path)
-        }
+       path.to_string() 
     }
 
     pub fn tikz(mut self, code: &str) -> Self {
