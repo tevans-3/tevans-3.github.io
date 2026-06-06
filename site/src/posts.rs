@@ -129,7 +129,7 @@ topology:
     .subtitle("Key Generation and Management")
     .paragraph(r#"Every relay node will have two public-private keypairs: (1), an identity keypair and (2), an onion keypair (in the TOR documentation, (2) is referred to as a "circuit extension" keypair). The identity keypair lasts the lifetime of the node, whereas the onion keypair has a shorter lifetime. The ephemerality of the onion key provides an important security benefit in that compromised keys are guaranteed to be useless after a fixed amount of time. The onion keys are used to encrypt and decrypt data during circuit construction, which is why it makes sense to rotate them out periodically."#)
     .paragraph("The client will maintain a look-up table of key value pairs where each key is a node's node id and each value is that node's public key. When a node updates its keypair, it will need to notify the client so the client's look-up table can be updated with the node's new public key.")
-    .paragraph("We will use OpenSSL's implementation of RSA to handle the actual key generation.")
+    .paragraph("We'll use OpenSSL's implementation of RSA to handle the actual key generation.")
     .paragraph("We'll implement the following methods:")
     .code_block(r#"GenerateRelayIdentityKeypair(string nodeId, string dirAddress);
 GenerateRelayOnionKeypair(string nodeId, string dirAddress);
@@ -140,5 +140,10 @@ SendNewPubKeyToClient(string dirAddress, string key, string type);"#, "cpp")
     .code_block(r#"OfferHandshake(string nodeId, string myHalfOfKey);
 ReturnHandshake(string nodeId, string myHalfOfKey, string hashedVal);
 AuthenticateHandshake(string key, string hash);"#, "cpp")
-
+    .title("But First: A Little QOL") 
+    .paragraph(r#"You can copy and paste the following shell script into your working directory. If you save it as <code>setup.sh</code>", when you run <code>sudo bash -x setup.sh</code>, it will (A) run containerlab, (B) deploy your lab topology, destroying any running instances due to the --reconfigure command, setting up containers and connections as specified in your topology file, and then (C) on your host machine, run an inspect command and redirect its output into a lab.json file. This last step writes the metadata that we'll need to use to establish TCP connections between our client and server nodes."#)
+    .code_block(r#"sudo docker run --rm -it --privileged     --network host     -v /var/run/docker.sock:/var/run/docker.sock     -v /var/run/netns:/var/run/netns     -v /etc/hosts:/etc/hosts     -v /var/lib/docker/containers:/var/lib/docker/containers     --pid="host"     -v $(pwd):$(pwd)     -w $(pwd)     ghcr.io/srl-labs/clab bash -c 'containerlab deploy --reconfigure && containerlab inspect --all --format json > lab.json'
+python create_node_directory.py"#, "bash")
+    .title("That's Enough QOL")
+    .paragraph(r#"For simplicity's sake, we'll model this system as a peer-to-peer network, where each client"#)
 }
