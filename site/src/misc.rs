@@ -59,8 +59,12 @@ pub fn reading_content() -> String {
     let mut html = String::new();
     html.push_str("<ul class=\"reading-list\">\n");
     let mut book = Book::want_to_read("Lack of Character", "John Doris").to_html(); 
+    html.push_str(&book);
+    book = Book::reading("Axiomatic", "Greg Egan").to_html();
+    html.push_str(&book);
+    book = Book::read("The Sirens of Titan", "Kurt Vonnegut", "2026-06", 4.75).to_html(); 
     html.push_str(&book); 
-    book = Book::reading("The Dispossessed", "Ursula K. Leguin").to_html();
+    book = Book::read("The Dispossessed", "Ursula K. Leguin", "2026-05", 4.75).to_html();
     html.push_str(&book); 
     book = Book::read("The Three Stigmata of Palmer Eldritch", "Philip K. Dick", "2025-07", 4.5).to_html(); 
     html.push_str(book.as_str()); 
@@ -68,7 +72,7 @@ pub fn reading_content() -> String {
     html.push_str(book.as_str()); 
     book = Book::read("Intermezzo", "Sally Rooney", "2025-01", 4.0).to_html(); 
     html.push_str(book.as_str());
-    book = Book::read("Klara and the Sun", "Kazuo Ishiguro", "2025-01", 4.7).to_html(); 
+    book = Book::read("Klara and the Sun", "Kazuo Ishiguro", "2025-01", 4.75).to_html(); 
     html.push_str(book.as_str());
     html.push_str("</ul>\n");
     html
@@ -104,7 +108,9 @@ impl Quote {
 pub fn quotes_content() -> String {
     let mut html = String::new();
     html.push_str("<div class=\"quotes\">\n");
-    let mut quote = Quote::new("they sowed their isn't they reaped their same\n sun moon stars rain", "E.E. Cummings").to_html();
+    let mut quote = Quote::new("...a purpose of human life, no matter who is controlling it, is to love whoever is around to be loved.", "Kurt Vonnegut, The Sirens of Titan").to_html(); 
+    html.push_str(quote.as_str()); 
+    quote = Quote::new("they sowed their isn't they reaped their same\n sun moon stars rain", "E.E. Cummings").to_html();
     html.push_str(quote.as_str()); 
     quote = Quote::new("The only thing I ever learned is that some people are lucky and some people aren't and not even a graduate of the Harvard Business School can say why.", "Kurt Vonnegut, The Sirens of Titan").to_html(); 
     html.push_str(quote.as_str()); 
@@ -126,7 +132,7 @@ pub fn quotes_content() -> String {
     quote = Quote::new("There's who you are, and there's who you think you are, and your personal misery is defined by how big the gap is between them.", "Glee").to_html(); 
     html.push_str(quote.as_str()); 
     quote = Quote::new("The greatest hazard of all, losing one's self, can happen very quietly in the world, as though it were nothing at all.", "Soren Kierkegaard").to_html(); 
-    html.push_str(quote.as_str()); 
+    html.push_str(quote.as_str());
     html.push_str("</div>\n");
     html
 }

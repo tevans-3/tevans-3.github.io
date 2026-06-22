@@ -29,7 +29,7 @@ fn metallica_post() -> BlogPost {
 
 fn onionhead_post() -> BlogPost {
     BlogPost::new(
-        "Onionhead: a DIY Onion Router",
+        "Peeling an Onion",
         "2026-04-01",
         "diy-onion-router",
     )
@@ -43,7 +43,7 @@ fn onionhead_post() -> BlogPost {
     .paragraph("Containerlab is a containerized network simulator, built on Docker. We're going to use it to configure our network topology.")
     .colorbox("#e8eaf6", "<strong>Note</strong> You need Docker to run containerlab. If you're reading this tutorial-style, this post assumes that you already have Docker installed. You can just run this Docker command to install containerlab: 'docker pull ghcr.io/srl-labs/clab'")
     .title("Configuring a Network with Containerlab")
-    .paragraph("A virtual lab is a simulation of a complex network that runs on a single machine. A lab is built by defining a network topology. Where a network is the whole set of interconnected components and connections, the complete system, a network topology is an abstraction and specification of a network. It's just a set of nodes and a set of edges.")
+    .paragraph("A virtual lab is a simulation of a complex network that runs on a single machine. A lab is built by defining a network topology. Where a network is the whole set of interconnected infrastructure, all the hardware components and connections, the complete physical system, a network topology is a logical abstraction and specification of a network. You can think of it as a graph: it's just a set of nodes and a set of edges.")
     .colorbox_styled("#e8f5e9", "#2e7d32", 2, "Containerlab is a batteries-included, FOSS tool for building and running virtual labs. It gives you everything you need to define, run, and analyze labs out-of-the-box.")
     .paragraph("Here's an example of a network topology .yaml definition file:")
     .code_block(r"
@@ -68,13 +68,20 @@ fn onionhead_post() -> BlogPost {
     .paragraph("From the above file and diagram, you can see that we literally just define a topology by naming it and then specifying the precise configuration of its nodes and links.")
     .paragraph("Onion routing systems require a minimum of three nodes to provide anonymity. To understand why, imagine you're trying to connect to some site via Tor. Your onion proxy builds a three hop circuit which hops from node1, to node2, then to the exit node, after which point you're connected with your destination application. At every step of the system, no two onion routers (or nodes) know the identity of both you and the site you want to connect to. The first node can identify your ip address, and it knows, after decrypting its layer of the onion, that your relay needs to go to node2, but it doesn't know your final destination. Node2, in turn, knows that a relay came from node1, and after decrypting its layer of the onion, that that relay needs to go to the third exit node, but it doesn't have any other information about the node's origins or its final destination. Similarly, the exit node knows the identity of the middle node and the destination, but nothing else. Now imagine there are only two nodes in between you and the site you're trying to access. If one of those nodes fails or is compromised, then a single node can now identify both you and your destination. Which means that anonymity is completely lost.")
     .paragraph("Because our system requires us to periodically switch between circuits, we need at least 4 routers (two middle, one entry and one exit).")
-    .paragraph(r#"So let's write our topology file. First, we'll create a dedicated directory by running mkdir onionhead. All this tutorial's work will be done from within this directory. Next, we'll start a file named oh.clab.yml. Then we'll add the name: oh at the top. Then we define an instance of a topology and indented beneath that, the nodes. Each node's kind is nokiasrlinux, because containerlab configures TLS by default on all connections between nodes of that kind. Containerlab will automatically create a config file for each node when the lab is created, so we can leave out the "startup-config:" option. Next up are the links. Each link is defined as a pair of endpoints, which are just strings specifying which port to connect to. For example, the string "client:e1-1" means port 1 on line-card 1 on the client node. (A line card is the hardware that contains all the ports for routers and switches to connect to; in this lab, there is only one linecard, so the first part of the interface specification will always be "e1", and you don't really need to worry about or know anything about linecards). Finally, our topology file will look like this:"#)
+    .paragraph(r#"So let's write our topology file. First, we'll create a dedicated directory by running mkdir onionhead. All this tutorial's work will be done from within this directory. Next, we'll start a file named oh.clab.yml. Then we'll add the name: oh at the top. Then we define an instance of a topology and indented beneath that, the nodes. Each node's kind is nokiasrlinux, because containerlab configures TLS by default on all connections between nodes of that kind. Containerlab will automatically create a config file for each node when the lab is created, so we can leave out the "startup-config:" option. Next up are the links. Each link is defined as a pair of endpoints, which are just strings specifying which port to connect to. For example, the string "client:e1-1" means port 1 on line-card 1 on the client node. (A line card is the hardware that contains all the ports for routers and switches to connect to; in this lab, there is only one linecard, so the first part of the interface specification will always be "e1", and you don't really need to worry about or know anything about linecards)."#)
+    .paragraph(r#"We'll also need to map a few files from the host's root to the client node's root directory. We can do this using bind mounts. Finally, our topology file will look like this:"#)
     .code_block(r#"name: oh
+defaults: 
+  binds: 
+    - ./node.py:~/node.py 
 topology:
   nodes:
     client:
       kind: nokia_srlinux
       image: ghcr.io/nokia/srlinux
+      binds: 
+        - ./create_node_directory.py:~/create_node_directory.py 
+        - ./stats.sh:~/stats.sh 
     entry:
       kind: nokia_srlinux
       image: ghcr.io/nokia/srlinux
@@ -98,7 +105,8 @@ topology:
     - endpoints: ["exit:e1-1", "dest:e1-3"]
     - endpoints: ["middle2:e1-1", "exit:e1-3"]
     - endpoints: ["entry:e1-2", "middle2:e1-4"]"#, "yaml")
-    .paragraph("We'll need to add some more configuration options to our nodes eventually, but for now this is enough. Next, just to make sure containerlab and our topology are set up properly, let's deploy our network. We'll run this command to start a containerlab shell:")
+    .paragraph("You'll notice that, in total, we bind-mounted 3 files: node.py globally (all the OR code is in this file), and create_node_directory.py and stats.py on just the client node. The file create_node_directory.py defines a registry of node metadata for the client to use when constructing and managing circuits and performing all the other OR operations. The file stats.sh spawns a background process and then, in that process, updates the node_directory and generates a system status summary at a user-configurable time interval (by default, 5 minutes). We'll need to add some more configuration options to our nodes eventually, but for now this is enough.")
+    .paragraph("We're not going to run the entire system just yet. Instead, just to make sure containerlab and our topology are set up properly, let's test-deploy our network. We'll manually run this command to start a containerlab shell:")
     .code_block(r#"docker run --rm -it --privileged \
     --network host \
     -v /var/run/docker.sock:/var/run/docker.sock \
@@ -121,27 +129,34 @@ topology:
     .title("Building the Client")
     .paragraph("The client is the user-side application that connects a user to the onion routing system. The client is responsible for circuit construction, sending/receiving relay cells and opening/closing streams.")
     .subtitle("Circuit Construction")
-    .paragraph("In an onion routing system, all data is transmitted in fixed size cells. These cells follow a standard format which is defined in the system's specification. In this system, all cells will follow the TOR format. This means that all cells are 514 bytes long, consist of a header and a payload, and are one of two types: relay (data-carrying) or control (command-carrying, used to instruct some downstream node to take a specific action).")
+    .paragraph("In an onion routing system, all data is transmitted in fixed size cells. These cells follow a standard format which is defined in the system's specification. In this system, all cells will follow a custom format. In the original TOR specification format, all cells are 514 bytes long, consist of a header and a payload, and are one of two types: relay (data-carrying) or control (command-carrying, used to instruct some downstream node to take a specific action). In our custom format, all cells will be either relay or control, but will be 776 bytes long, containing three 256-byte strings bookended by two 32-bit integers. This is what a cell looks like as a Python class:")
+    .code_block(r#"class Cell: 
+                    def __init__(self, ipv4, node_pub_key, name, nodeId, flag): 
+                        self.ipv4 = ipv4 
+                        self.node_pub_key = node_pub_key 
+                        self.name = name 
+                        self.nodeId = nodeId 
+                        self.flag = flag 
+                        self.bin = struct.pack(FMT, ipv4, node_pub_key, name, nodeId, flag)"#, "python")
+    .paragraph("Here, <code>flag</code> is a hex digit specifying the type of cell: CREATE, CREATED, RELAY, DESTROY, EXTEND, or EXTENDED. <code>FMT</code> is a format string, <code>'i256s256s256si'</code>, describing the byte structure of a cell. The Python <code>struct</code> library provides a method, struct.pack(), which will automatically pack the provided parameters into a binary struct using the provided format string.")
     .paragraph("A circuit is a sequence of nodes which defines the path a client's cell travels to reach its destination. In order to construct a circuit, the client negotiates key exchanges with each node it intends to include in the circuit. It then takes its message and destination and encrypts that using the exit node's key. It concatenates a relay cell to the end of this ciphertext; the concatenated relay cell tells the middle node to send the cell to the exit node. The ciphertext and the concatenated relay cell are then encrypted using the middle node's key. This exact same process is repeated for the entry node (or in circuits more than three-hops long, for every node between the middle and entry nodes). (This layering of encryption is the reason it's called onion routing; because, like onions, the encrypted cells have many layers). This diagram shows what an onion looks like after all these encryption operations have been performed:")
-    .image_with_alt("../../Onion_diagram.png", "A fully encrypted onion")
+    .image_with_alt("../../onion.png", "A fully encrypted onion")
     .paragraph("When a node receives a relay cell, it decrypts it using its private key. The decrypted payload will just be the concatenated relay cell which tells the node where to route the cell next; the actual message is still wrapped under several layers of encryption. The node then forwards the cell along, and similarly, at every step of the way, each node unwraps another layer of the onion, until finally, at the exit node, the entire message is decrypted.")
     .paragraph("We'll need to implement the following methods: <ol><li>A method of establishing private keys for all the nodes</li><li>A method of establishing public key parameters (onion keys) for all the nodes</li><li>A method of initiating public key handshakes between nodes</li><li>A method of hashing keys to verify that the intended onion router actually completed the handshake</li></ol>")
     .subtitle("Key Generation and Management")
     .paragraph(r#"Every relay node will have two public-private keypairs: (1), an identity keypair and (2), an onion keypair (in the TOR documentation, (2) is referred to as a "circuit extension" keypair). The identity keypair lasts the lifetime of the node, whereas the onion keypair has a shorter lifetime. The ephemerality of the onion key provides an important security benefit in that compromised keys are guaranteed to be useless after a fixed amount of time. The onion keys are used to encrypt and decrypt data during circuit construction, which is why it makes sense to rotate them out periodically."#)
-    .paragraph("The client will maintain a look-up table of key value pairs where each key is a node's node id and each value is that node's public key. When a node updates its keypair, it will need to notify the client so the client's look-up table can be updated with the node's new public key.")
-    .paragraph("We'll use OpenSSL's implementation of RSA to handle the actual key generation.")
-    .paragraph("We'll implement the following methods:")
-    .code_block(r#"GenerateRelayIdentityKeypair(string nodeId, string dirAddress);
-GenerateRelayOnionKeypair(string nodeId, string dirAddress);
-GetRelayOnionKeyLifespan(string nodeId);
-RefreshRelayOnionKey(strihg nodeId, string dirAddress);
-SendNewPubKeyToClient(string dirAddress, string key, string type);"#, "cpp")
+    .paragraph("The client will maintain a look-up table of key value pairs where each key is a node's node id and each value is that node's symmetric key. When a node updates its keypair, it will need to notify the client so the client's look-up table can be updated with the node's new public key.")
+    .paragraph("We'll use Python's cryptography library to implement all cryptographic operations.")
     .paragraph(r#"For our client, we'll need a method to establish a shared secret key with each handshake. Each relay will need a method to return the handshake. The returned handshake will include the value \(g^y\), where g is the agreed-upon public key parameter and \(y\) is the relay's private key, as well as a hash \(H(K|\text{"handshake"})\), where \(K=g^{xy}\). This hash allows the client to verify that a key has been established with the correct router. To understand why this works, consider how the client will validate the relay's returned handshake. The client has the relay's public key, the value \(g^y\), and its private key \(x\). It can compute \(g^{xy}\) and then compute a hash of that value \(| \text{ handshake}\). Because hash algorithms are deterministic, if the node that it exchanged \(g^x\) with is also the node that returned \(g^{xy}\), then the hashed value \(H(K|\text{"handshake"})\) will equal the hash returned by the relay."#)
-    .code_block(r#"OfferHandshake(string nodeId, string myHalfOfKey);
-ReturnHandshake(string nodeId, string myHalfOfKey, string hashedVal);
-AuthenticateHandshake(string key, string hash);"#, "cpp")
+    .paragraph(r#"We'll implement those two methods like this:"#)
+    .code_block(r#"def create(self): 
+            """
+            contains the first half of the Diffie-Hellman handshake, g^x, sent from node 1 to 2 
+            """
+            parameters = dh.generate_parameters(generator=2, key_size=2048)
+            private_key = parameters.generate_private_key()"#, "python")
     .title("But First: A Little QOL") 
-    .paragraph(r#"You can copy and paste the following shell script into your working directory. If you save it as <code>setup.sh</code>", when you run <code>sudo bash -x setup.sh</code>, it will (A) run containerlab, (B) deploy your lab topology, destroying any running instances due to the --reconfigure command, setting up containers and connections as specified in your topology file, and then (C) on your host machine, run an inspect command and redirect its output into a lab.json file. This last step writes the metadata that we'll need to use to establish TCP connections between our client and server nodes."#)
+    .paragraph(r#"You can copy and paste the following shell script into your working directory. If you save it as <code>setup.sh</code>, when you run <code>sudo bash setup.sh</code>, it will (A) run containerlab, (B) deploy your lab topology, destroying any running instances due to the --reconfigure command, setting up containers and connections as specified in your topology file, and then (C) on your host machine, run an inspect command and redirect its output into a lab.json file. This last step writes the metadata that we'll need to use to establish TCP connections between our client and server nodes."#)
     .code_block(r#"sudo docker run --rm -it --privileged     --network host     -v /var/run/docker.sock:/var/run/docker.sock     -v /var/run/netns:/var/run/netns     -v /etc/hosts:/etc/hosts     -v /var/lib/docker/containers:/var/lib/docker/containers     --pid="host"     -v $(pwd):$(pwd)     -w $(pwd)     ghcr.io/srl-labs/clab bash -c 'containerlab deploy --reconfigure && containerlab inspect --all --format json > lab.json'
 python create_node_directory.py"#, "bash")
     .title("That's Enough QOL")
