@@ -302,7 +302,6 @@ a:hover {
     border-bottom-color: var(--accent);
 }
 
-/* Projects */
 .project-list {
     list-style: none;
     padding: 0;
@@ -345,13 +344,12 @@ a:hover {
     transition: width 0.3s;
 }
 
-/* Course tooltips */
-.course-tooltip {
+.site-tooltip {
     position: relative;
     cursor: help;
 }
 
-.course-tooltip .tooltip-text {
+.site-tooltip .tooltip-text {
     visibility: hidden;
     opacity: 0;
     position: absolute;
@@ -372,12 +370,11 @@ a:hover {
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.course-tooltip:hover .tooltip-text {
+.site-tooltip:hover .tooltip-text {
     visibility: visible;
     opacity: 1;
 }
 
-/* About footer */
 .about-footer {
     display: flex;
     justify-content: center;
@@ -387,7 +384,6 @@ a:hover {
     border-top: 1px solid var(--nav-border);
 }
 
-/* Code blocks */
 pre {
     background: #f5f0eb;
     border: 1px solid var(--nav-border);
@@ -406,7 +402,6 @@ pre code {
     border-radius: 0;
 }
 
-/* Inline code and math */
 code {
     font-family: "Computer Modern Typewriter", "Latin Modern Mono", monospace;
     font-size: 0.82rem;
@@ -423,5 +418,5 @@ code {
     html { font-size: 16px; }
     body { padding: 1rem 0.75rem 4.5rem; }
     .bottom-nav { gap: 1rem; font-size: 0.85rem; }
-    .course-tooltip .tooltip-text { width: 220px; }
+    .site-tooltip .tooltip-text { width: 220px; }
 }
