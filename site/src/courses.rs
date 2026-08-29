@@ -7,28 +7,27 @@ pub fn all_years() -> Vec<Year> {
                 Semester::new(Season::Winter)
                     .course("TODO- Advanced Algorithms", "CMPUT 498",
                         "A topics course targeted for senior undergraduate and graduate students interested in TCS. Covers classic topics and more recent advances in streaming and sketching algorithms for big data, online and randomized algorithms, and approximation algorithms.")
-                    .course("TODO- Computer Systems and Architecture", "CMPUT 429",
-                        "A discussion of computer system design concepts with stress on modern ideas that have shaped the high-performance architecture of contemporary systems. Instruction sets, pipelining, instruction-level parallelism, register reuse, branch prediction, CPU control, cache- coherence, accelerators, and related concepts. Memory technologies, caches, I/O, high-performance networks.")
+                    .course("TODO- Formal Languages, Automata, and Computability", "CMPUT 474",
+                        "Formal grammars; relationship between grammars and automata; regular expressions; finite state machines; pushdown automata; Turing machines; computability; the halting problem; time and space complexity.")
             ),
         Year::new(2026)
             .semester(
                 Semester::new(Season::Fall)
-                    .course("TODO- Compiler Design", "CMPUT 415",
-                        "Compilers, interpreters, lexical analysis, syntax analysis, syntax-directed translation, symbol tables, type checking, flow analysis, code generation, and code optimization.")
+                    .course("TODO- Advanced Embedded Systems Design", "ECE 406", "A broad introduction to embedded design, development, and test with examples in signal processing, control, and machine learning. Fundamentals of bare metal development including debugging and profiling. Embedded real-time operating systems; sensing and processing of information from physical processes via analogue and digital sensors, and use of such signals in system control. Sensor data fusion and the use of machine learning to detect data features in an embedded environment.")
                     .course("TODO- Algorithms II", "CMPUT 304",
                         "The second course of a two-course sequence on algorithm design. Emphasis on principles of algorithm design. Categories of algorithms such as divide-and-conquer, greedy algorithms, dynamic programming; analysis of algorithms; limits of algorithm design; NP-completeness; heuristic algorithms.")
             )
             .semester(
                 Semester::new(Season::Summer)
-                    .course("TODO- Calculus IV", "MATH 315",
-                        "Vector calculus, line and surface integrals, the divergence, Green's, and Stokes' theorems, and differential forms.")
+                    .course("Probability and Statistics II", "STAT 266",
+                        "Functions of random variables, sampling distributions, Central Limit Theorem, law of large numbers, statistical models for the data, likelihood, parameters and their interpretation, objectives of statistical inference, point and interval estimation, method of moments, basic notions of testing of hypotheses, errors of the first and second kind, significance level, power, p-value.")
             )            
             .semester(
                 Semester::new(Season::Winter)
                     .course("Parallel and Distributed Systems", "CMPUT 481",
                         "Introduction to parallel programming, parallel and distributed systems, and high-performance computing, covering both shared-memory parallel computers and distributed-memory multicomputers.")
                     .course("Distributed Systems Architecture", "CMPUT 398",
-                        "Topics course covering distributed systems architecture, focusing on client-server computing.")
+                        "Extends the ideas of interprocess communication to client-server systems, with additional topics of security and fault tolerance.  Case studies of select client-server systems, including Web servers and key-value servers. Client-server computing, client-server security including authentication and encrypted channels, fault tolerance, performance, and benchmarking.")
                     .course("Exploring Software Development Domains", "ECE 421",
                         "Advanced programming concepts including productivity, components and re-use, object-oriented construction, systems programming, concurrent programming, distributed programming, and GUI programming.")
             ),
@@ -36,7 +35,7 @@ pub fn all_years() -> Vec<Year> {
             .semester(
                 Semester::new(Season::Fall)
                     .course("Cryptography and Digital Privacy", "CMPUT 496",
-                        "Topics course covering cryptographic primitives, public-key cryptography, digital signatures, and privacy-preserving protocols.")
+                        "Introduction to data privacy and security, using cryptography and related techniques. It examines how data and meta-data can be protected at rest, in transit, and during computation. Basics of cryptography: (CIA, adversarial thinking, cryptanalysis), symmetric encryption, hash functions, MAC, public key encryption (RSA), semantic security. Secret sharing, inference attacks, k-anonymity, l-diversity, t-plausibility. Differential privacy, private machine learning, homomorphic encryption, and MPC.")
                     .course("Operating Systems", "CMPUT 379",
                         "Process management, interrupt processing, resource allocation, semaphores, deadlock, memory management, virtual memory, paging, scheduling, file systems, and OS security.")
                     .course("Machine Learning I", "CMPUT 267",

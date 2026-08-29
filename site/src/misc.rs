@@ -3,15 +3,17 @@ pub struct Book {
     pub author: String,
     pub date_read: String,
     pub rating: f32,
+    pub notes: String, 
 }
 
 impl Book {
-    pub fn read(title: &str, author: &str, date_read: &str, rating: f32) -> Self {
+    pub fn read(title: &str, author: &str, date_read: &str, rating: f32, notes: &str) -> Self {
         Self {
             title: title.to_string(),
             author: author.to_string(),
             date_read: date_read.to_string(),
             rating,
+            notes: notes.to_string(), 
         }
     }
 
@@ -21,6 +23,7 @@ impl Book {
             author: author.to_string(),
             date_read: String::new(),
             rating: 0.0,
+            notes: String::new(), 
         }
     }
 
@@ -30,12 +33,16 @@ impl Book {
             author: author.to_string(),
             date_read: String::new(),
             rating: 0.0,
+            notes: String::new(), 
         }
     }
 
     pub fn to_html(&self) -> String {
         let mut html = String::new();
-        html.push_str("<li>"); 
+        html.push_str("<li class=\"site-tooltip\">");
+        html.push_str("<span class=\"tooltip-text\">"); 
+        html.push_str(&self.notes);
+        html.push_str("</span>\n");
         html.push_str("<div class=\"book\">\n");
         html.push_str("<div class=\"title\">");
         html.push_str(&self.title);
@@ -58,21 +65,29 @@ impl Book {
 pub fn reading_content() -> String {
     let mut html = String::new();
     html.push_str("<ul class=\"reading-list\">\n");
-    let mut book = Book::want_to_read("Lack of Character", "John Doris").to_html(); 
+    let mut book = Book::read("The Topeka School", "Ben Lerner", "2026-07", 5.0, "").to_html(); 
+    html.push_str(&book); 
+    book = Book::read("Transcription", "Ben Lerner", "2026-07", 5.0, "").to_html();
+    html.push_str(&book); 
+    book = Book::read("Strangers", "Belle Burden", "2026-07", 3.25, "I almost finished this one.").to_html(); 
+    html.push_str(&book); 
+    book = Book::read("What Tech Calls Thinking", "Adrian Daub", "2026-07", 3.75, "").to_html();
+    html.push_str(&book); 
+    book = Book::reading("Lack of Character", "John Doris").to_html(); 
     html.push_str(&book);
     book = Book::reading("Axiomatic", "Greg Egan").to_html();
     html.push_str(&book);
-    book = Book::read("The Sirens of Titan", "Kurt Vonnegut", "2026-06", 4.75).to_html(); 
+    book = Book::read("The Sirens of Titan", "Kurt Vonnegut", "2026-06", 4.75, "").to_html(); 
     html.push_str(&book); 
-    book = Book::read("The Dispossessed", "Ursula K. Leguin", "2026-05", 4.75).to_html();
+    book = Book::read("The Dispossessed", "Ursula K. Leguin", "2026-05", 4.75, "").to_html();
     html.push_str(&book); 
-    book = Book::read("The Three Stigmata of Palmer Eldritch", "Philip K. Dick", "2025-07", 4.5).to_html(); 
+    book = Book::read("The Three Stigmata of Palmer Eldritch", "Philip K. Dick", "2025-07", 4.5, "").to_html(); 
     html.push_str(book.as_str()); 
-    book = Book::read("Normal People", "Sally Rooney", "2025-01", 4.0).to_html(); 
+    book = Book::read("Normal People", "Sally Rooney", "2025-01", 4.0, "").to_html(); 
     html.push_str(book.as_str()); 
-    book = Book::read("Intermezzo", "Sally Rooney", "2025-01", 4.0).to_html(); 
+    book = Book::read("Intermezzo", "Sally Rooney", "2025-01", 4.0, "").to_html(); 
     html.push_str(book.as_str());
-    book = Book::read("Klara and the Sun", "Kazuo Ishiguro", "2025-01", 4.75).to_html(); 
+    book = Book::read("Klara and the Sun", "Kazuo Ishiguro", "2025-01", 4.75, "").to_html(); 
     html.push_str(book.as_str());
     html.push_str("</ul>\n");
     html
@@ -108,7 +123,9 @@ impl Quote {
 pub fn quotes_content() -> String {
     let mut html = String::new();
     html.push_str("<div class=\"quotes\">\n");
-    let mut quote = Quote::new("...a purpose of human life, no matter who is controlling it, is to love whoever is around to be loved.", "Kurt Vonnegut, The Sirens of Titan").to_html(); 
+    let mut quote = Quote::new("What could be lonelier than a child in space?", "Ben Lerner").to_html(); 
+    html.push_str(quote.as_str()); 
+    quote = Quote::new("...a purpose of human life, no matter who is controlling it, is to love whoever is around to be loved.", "Kurt Vonnegut, The Sirens of Titan").to_html(); 
     html.push_str(quote.as_str()); 
     quote = Quote::new("they sowed their isn't they reaped their same\n sun moon stars rain", "E.E. Cummings").to_html();
     html.push_str(quote.as_str()); 

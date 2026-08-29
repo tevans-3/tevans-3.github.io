@@ -31,17 +31,14 @@ fn main() {
         fs::remove_dir_all(dist).expect("failed to clean dist");
     }
 
-    // /
     write_page(&tera, "about", &Context::new(), dist.join("index.html"));
 
-    // /posts
     let all_posts = posts::all_posts();
     let metas: Vec<_> = all_posts.iter().map(|p| p.meta()).collect();
     let mut ctx = Context::new();
     ctx.insert("posts", &metas);
     write_page(&tera, "posts", &ctx, dist.join("posts/index.html"));
 
-    // /posts/<slug>
     for post in &all_posts {
         let mut ctx = Context::new();
         ctx.insert("title", &post.title);
@@ -54,20 +51,17 @@ fn main() {
         );
     }
 
-    // /courses
     let years = courses::all_years();
     let rendered: String = years.iter().map(|y| y.render()).collect();
     let mut ctx = Context::new();
     ctx.insert("content", &rendered);
     write_page(&tera, "courses", &ctx, dist.join("courses/index.html"));
 
-    // /projects
     let all_projects = projects::all_projects();
     let mut ctx = Context::new();
     ctx.insert("projects", &all_projects);
     write_page(&tera, "projects", &ctx, dist.join("projects/index.html"));
 
-    // /misc
     let mut ctx = Context::new();
     ctx.insert("reading_content", &misc::reading_content());
     ctx.insert("quotes_content", &misc::quotes_content());
@@ -78,10 +72,8 @@ fn main() {
         dist.join("misc/index.html"),
     );
 
-    // copy static/
     copy_dir("static", &dist.join("static"));
 
-    // copy public/ (images and other assets served from dist root)
     if Path::new("public").exists() {
         copy_dir("public", dist);
     }

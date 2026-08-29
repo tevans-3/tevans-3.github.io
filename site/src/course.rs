@@ -85,7 +85,7 @@ impl Year {
             html.push_str("<ul class=\"course-list\">\n");
             for course in &sem.courses {
                 html.push_str(&format!(
-                    "  <li class=\"course-tooltip\"><span class=\"course-number\">{}</span> {}<span class=\"tooltip-text\">{}</span></li>\n",
+                    "  <li class=\"site-tooltip\"><span class=\"course-number\">{}</span> {}<span class=\"tooltip-text\">{}</span></li>\n",
                     escape(&course.number),
                     escape(&course.name),
                     escape(&course.description)
