@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Posts</title>
+    <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <link rel="stylesheet" href="/static/style.css">
 </head>
@@ -19,8 +20,18 @@
     </li>
 
     <li>
-        <a href="/posts/handwriting-riscv-assembly">Metallica Hell Yes: Handwriting RISC-V Assembly for Fun and Profit</a>
-        <time>2026-05-16</time>
+        <a href="/posts/camera">The Machine Talks Back, The Human Never Talks Back</a>
+        <time>2026-08-29</time>
+    </li>
+
+    <li>
+        <a href="/posts/cave_robots">Anything You Can Do, AI Can Do Better</a>
+        <time>2026-09-10</time>
+    </li>
+
+    <li>
+        <a href="/posts/eli5">Scarcity and Abundance</a>
+        <time>2026-09-19</time>
     </li>
 
 </ul>
@@ -33,6 +44,8 @@
         <a href="/projects">projects</a>
         <a href="/misc">misc</a>
         <a href="/">about</a>
+        <button id="theme-toggle" class="theme-toggle" type="button"
+        aria-label="Toggle dark mode">bg=light</button>
     </nav>
 
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
@@ -52,5 +65,6 @@
             });
         });
     </script>
+    <script src="theme-toggle.js"></script>
 </body>
 </html>

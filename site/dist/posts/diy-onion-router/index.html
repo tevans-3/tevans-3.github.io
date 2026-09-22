@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Peeling an Onion</title>
+    <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <link rel="stylesheet" href="/static/style.css">
 </head>
@@ -149,6 +150,8 @@ python create_node_directory.py</code></pre>
         <a href="/projects">projects</a>
         <a href="/misc">misc</a>
         <a href="/">about</a>
+        <button id="theme-toggle" class="theme-toggle" type="button"
+        aria-label="Toggle dark mode">bg=light</button>
     </nav>
 
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
@@ -168,5 +171,6 @@ python create_node_directory.py</code></pre>
             });
         });
     </script>
+    <script src="theme-toggle.js"></script>
 </body>
 </html>

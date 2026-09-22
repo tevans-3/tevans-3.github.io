@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scarcity and Abundance</title>
+    <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <article class="latex-body">
+        
+<header class="post-header"><h1 class="post-title">Scarcity and Abundance</h1><time class="post-date">2026-09-19</time></header>
+<p>A few years ago, Fields medalist Richard Taylor ranked language models as "at roughly the same level as a bad undergraduate". Late 2026's frontier models are approaching the level of a research mathematician. According to Tim Gowers, if a human submitted a proof like GPT 5.4's Erdos 1196 to a top-ranked journal, he'd have recommended immediate publication "without any hesitation". SOTA models are capable of solving open research problems that mathematicians widely regard as important. Here's a small sample of recent results: Erdos 1196, the Jacobian conjecture, Navier-Stokes, a Lean verification of Fermat's Last Theorem.  According to top figures like Terence Tao, mathematics has entered a new age of "proof abundance". This is forcing mathematicians to think deeply about the implications for their profession, with some, like Tristan Buckmaster, saying "The game is up. [AI is] like having a team of PhD students who don't need to eat and don't need to sleep. We need to figure out 'What is math'?". The field has a long history of rewarding specific content-- theorems, definitions, theories, proofs-- over all other professional outputs. Machines can now generate that content far faster than human beings can understand it. What's left for humans?</p>
+<p>Some people think the field needs to respond by radically redesigning all its incentive structures. Instead of conditioning career advancement, fame, prizes, and tenure on proof production, the field should instead elevate mathematical exposition-- writing that aims to metabolize existing math. The purpose of mathematics, in this view, is to produce mathematical understanding in other human beings, not to meet "some quota of definitions, theorems, and proofs". Exposition is the most effective way to meet that goal, therefore, the field should rearrange itself to reward exposition. The thinking is that this will give human beings a place in mathematics even when machines are superior theorem-provers.</p>
+<p>I think this is mostly wrong. If models can be trained to solve open research problems, they can be trained to produce high-quality mathematical exposition. Any sufficiently valuable activity, if it can be automated, will eventually be automated. Making explanation the more valuable activity just increases the automation incentive, so that shifting the goal is just shifting the automation target. It's giving AI labs another set of benchmarks to beat. But it's not giving human mathematicians more relevance.</p>
+<p>Another issue is that explanation is not an obviously fair substitute for creation. Creation's value is clear: a proof begins with a statement whose truth value is unknown and ends by settling that question. Explanation's value is much fuzzier. It's subjective. And it's questionable if increasing exposition proportionally increases understanding. In my experience, exposition creates the feeling of understanding more than the actual thing. To really understand what a limit is, you have to reason about deltas and epsilons and convergence for yourself. In a sport like Olympic weightlifting, the most talented coach in the world can't make you stronger if you don't lift the weights, and I think that mathematics is similar: you have to do the reps. That's really the only route to internalizing the content. There's still no royal road.</p>
+<p>Some people still knit and weave their own fabrics, even though the industrial value of those skills is essentially nil. When specific practices are automated, those practices go away and people find other things to value. A few hobbyists carry on the traditions-- lots of people enjoy knitting in their spare time. It's just not a profession.</p>
+<p>What does it mean when the automated practice is-- human cognition? When that's fully outsourced, what's left to value? I don't know. I do know that, if I were an artisanal weaver in the early 19th-century, I'd probably be profoundly disoriented and threatened by Jacquard looms. I'd sympathize with the Luddite crowds that stormed factories and smashed knitting machines. But, I'm not an 1800s craftsperson displaced by machinery. As destructive as that technological innovation was, I wouldn't want to live in a pre-Industrial-Revolution world. Technology's positives and negatives aren't separable at the implementation stage. And the positives include lots of things that I don't want to give up.</p>
+
+
+    </article>
+
+    <nav class="bottom-nav">
+        <a href="/posts">posts</a>
+        <a href="/courses">courses</a>
+        <a href="/projects">projects</a>
+        <a href="/misc">misc</a>
+        <a href="/">about</a>
+        <button id="theme-toggle" class="theme-toggle" type="button"
+        aria-label="Toggle dark mode">bg=light</button>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "\\[", right: "\\]", display: true},
+                    {left: "\\(", right: "\\)", display: false},
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ],
+                throwOnError: false
+            });
+        });
+    </script>
+    <script src="theme-toggle.js"></script>
+</body>
+</html>

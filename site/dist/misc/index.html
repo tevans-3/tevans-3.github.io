@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Misc</title>
+    <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <link rel="stylesheet" href="/static/style.css">
 </head>
@@ -20,6 +21,22 @@
 
 <div class="tab-content active" id="reading">
     <ul class="reading-list">
+<li class="site-tooltip"><span class="tooltip-text"></span>
+<div class="book">
+<div class="title">Empire of AI</div>
+<div class="author">Karen Hao</div>
+<div class="date-read">2026-09</div>
+<div class="rating">5</div>
+</div>
+</li>
+<li class="site-tooltip"><span class="tooltip-text"></span>
+<div class="book">
+<div class="title">The Employees</div>
+<div class="author">Olga Ravn</div>
+<div class="date-read">2026-08</div>
+<div class="rating">3.75</div>
+</div>
+</li>
 <li class="site-tooltip"><span class="tooltip-text"></span>
 <div class="book">
 <div class="title">The Topeka School</div>
@@ -52,20 +69,12 @@
 <div class="rating">3.75</div>
 </div>
 </li>
-<li class="site-tooltip"><span class="tooltip-text"></span>
+<li class="site-tooltip"><span class="tooltip-text">I only read like 75% of this one.</span>
 <div class="book">
 <div class="title">Lack of Character</div>
 <div class="author">John Doris</div>
-<div class="date-read"></div>
-<div class="rating">0</div>
-</div>
-</li>
-<li class="site-tooltip"><span class="tooltip-text"></span>
-<div class="book">
-<div class="title">Axiomatic</div>
-<div class="author">Greg Egan</div>
-<div class="date-read"></div>
-<div class="rating">0</div>
+<div class="date-read">2026-07</div>
+<div class="rating">3.75</div>
 </div>
 </li>
 <li class="site-tooltip"><span class="tooltip-text"></span>
@@ -205,6 +214,8 @@ document.querySelectorAll('.tab').forEach(function(btn) {
         <a href="/projects">projects</a>
         <a href="/misc">misc</a>
         <a href="/">about</a>
+        <button id="theme-toggle" class="theme-toggle" type="button"
+        aria-label="Toggle dark mode">bg=light</button>
     </nav>
 
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
@@ -224,5 +235,6 @@ document.querySelectorAll('.tab').forEach(function(btn) {
             });
         });
     </script>
+    <script src="theme-toggle.js"></script>
 </body>
 </html>

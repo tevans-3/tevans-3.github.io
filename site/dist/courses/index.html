@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Courses</title>
+    <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <link rel="stylesheet" href="/static/style.css">
 </head>
@@ -20,8 +21,8 @@
 <h2 class="section-title">2026</h2>
 <h3 class="subsection-title">Fall</h3>
 <ul class="course-list">
-  <li class="site-tooltip"><span class="course-number">ECE 406</span> TODO- Advanced Embedded Systems Design<span class="tooltip-text">A broad introduction to embedded design, development, and test with examples in signal processing, control, and machine learning. Fundamentals of bare metal development including debugging and profiling. Embedded real-time operating systems; sensing and processing of information from physical processes via analogue and digital sensors, and use of such signals in system control. Sensor data fusion and the use of machine learning to detect data features in an embedded environment.</span></li>
-  <li class="site-tooltip"><span class="course-number">CMPUT 304</span> TODO- Algorithms II<span class="tooltip-text">The second course of a two-course sequence on algorithm design. Emphasis on principles of algorithm design. Categories of algorithms such as divide-and-conquer, greedy algorithms, dynamic programming; analysis of algorithms; limits of algorithm design; NP-completeness; heuristic algorithms.</span></li>
+  <li class="site-tooltip"><span class="course-number">ECE 406</span> TODO- Advanced Embedded System Design<span class="tooltip-text">A broad introduction to embedded design, development, and test with examples in signal processing, control, and machine learning. Fundamentals of bare metal development including debugging and profiling. Embedded real-time operating systems; sensing and processing of information from physical processes via analogue and digital sensors, and use of such signals in system control. Sensor data fusion and the use of machine learning to detect data features in an embedded environment.</span></li>
+  <li class="site-tooltip"><span class="course-number">ECE 312</span> TODO- Embedded System Design<span class="tooltip-text">Design methodology. Internal and external peripherals: serial communication, timers, D/A converters, interrupt controllers. Embedded system programming: introduction to real time operating systems, basics of real time programming, real-time debugging. Power and memory management. Fault tolerance.</span></li>
 </ul>
 <h3 class="subsection-title">Summer</h3>
 <ul class="course-list">
@@ -81,6 +82,8 @@
         <a href="/projects">projects</a>
         <a href="/misc">misc</a>
         <a href="/">about</a>
+        <button id="theme-toggle" class="theme-toggle" type="button"
+        aria-label="Toggle dark mode">bg=light</button>
     </nav>
 
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
@@ -100,5 +103,6 @@
             });
         });
     </script>
+    <script src="theme-toggle.js"></script>
 </body>
 </html>
