@@ -16,12 +16,12 @@
 
 <li class="project-item">
   <div class="project-header">
-    <span class="project-title">Firepi</span>
+    <span class="project-title">Motorheart</span>
     
-      <a href="https://https://tevans-3.github.io/posts/firepi">https://tevans-3.github.io/posts/firepi</a>
+      <a href="https://github.com/tevans-3/motorheart">github.com/tevans-3/motorheart</a>
     
   </div>
-  <p class="project-desc">A visualization of firefly synchronization using a Raspberry Pi Pico and an addressable W8212B LED ring.</p>
+  <p class="project-desc">An animation of a DC motor's internal h-bridge circuit (the motor's 'heart'), driven by a real DC motor operating in locked anti-phase mode and controlled by a Pi Pico 2W. PWM varies the duty cycle to control rotation speed; the pot scale is divided into three zones. Pot readings below 45% reference voltage drive CW, above 55%, CCW, and between, neutral.</p>
   <div class="progress-bar">
     <div class="progress-fill" style="width: 100%"></div>
   </div>
@@ -29,12 +29,27 @@
 
 <li class="project-item">
   <div class="project-header">
-    <span class="project-title">Bare Metal Game of Life</span>
+    <span class="project-title">Firepi</span>
+    
+      <a href="https://tevans-3.github.io/posts/firepi">tevans-3.github.io/posts/firepi</a>
     
   </div>
-  <p class="project-desc">Two variants of John Conway's Game of Life, one in RISC-V, one in Rust, handwritten for a 64x32 HUB75 Waveshare LED matrix with a Raspberry Pi Pico controller.</p>
+  <p class="project-desc">A visualization of firefly synchronization using a Raspberry Pi Pico and an addressable WS2812B LED ring.</p>
   <div class="progress-bar">
-    <div class="progress-fill" style="width: 10%"></div>
+    <div class="progress-fill" style="width: 100%"></div>
+  </div>
+</li>
+
+<li class="project-item">
+  <div class="project-header">
+    <span class="project-title">Reversible Game of Life</span>
+    
+      <a href="https://tevans-3.github.io/posts/life">tevans-3.github.io/posts/life</a>
+    
+  </div>
+  <p class="project-desc">A Game of Life animation using thermistors to set cell initialization randomness, an LED matrix for animation, and a Pi Pico for control. CW potentiometer turns drive generations; each CCW turn reverses the board back to the previous generation.</p>
+  <div class="progress-bar">
+    <div class="progress-fill" style="width: 100%"></div>
   </div>
 </li>
 
@@ -45,7 +60,7 @@
       <a href="https://github.com/tevans-3/evil-cube">github.com/tevans-3/evil-cube</a>
     
   </div>
-  <p class="project-desc">An adversarial Rubik's cube: a Rubik's cube that fights back. The cube scrambles itself whenever a 'distance-to-solved' metric falls below a certain threshold. It estimates the number of remaining solve-steps using corner pattern database lookups.</p>
+  <p class="project-desc">An adversarial Rubik's cube: a Rubik's cube that fights back. The cube scrambles itself whenever you get within a certain number of steps from solving it. It estimates the number of remaining solve-steps using corner pattern database lookups.</p>
   <div class="progress-bar">
     <div class="progress-fill" style="width: 90%"></div>
   </div>
